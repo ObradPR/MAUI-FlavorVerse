@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FlavorVerse.ViewModels"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="FlavorVerse.RegisterPage"
+             Title="Register">
+
+    <ContentPage.BindingContext>
+        <local:RegisterViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout x:Name="ParentLayout" Padding="30,0">
+
+            <Label
+                Text="Register"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1"
+                Margin="0,30" />
+
+            <Entry Placeholder="First name" Text="{Binding FirstName.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding FirstName.HasError}" Text="{Binding FirstName.Error}" TextColor="Red" />
+
+            <Entry Placeholder="Last name" Text="{Binding LastName.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding LastName.HasError}" Text="{Binding LastName.Error}" TextColor="Red" />
+
+            <Entry Placeholder="Email" Text="{Binding Email.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Email.HasError}" Text="{Binding Email.Error}" TextColor="Red" />
+
+            <Entry Placeholder="Phone" Text="{Binding Phone.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Phone.HasError}" Text="{Binding Phone.Error}" TextColor="Red" />
+
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Password.HasError}" Text="{Binding Password.Error}" TextColor="Red" />
+
+            <Entry Placeholder="Confirm password" IsPassword="True" Text="{Binding ConfirmPassword.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding ConfirmPassword.HasError}" Text="{Binding ConfirmPassword.Error}" TextColor="Red" />
+
+            <DatePicker
+                x:Name="DatePicker"
+                Date="{Binding DatePickerDate}"
+                MaximumDate="{x:Static sys:DateTime.Now}"
+                BackgroundColor="AliceBlue"
+                HorizontalOptions="FillAndExpand"
+                WidthRequest="{Binding Source={x:Reference ParentLayout}, Path=Width}"
+                Margin="{Binding Source={x:Reference ParentLayout}, Path=Padding}" />
+            <Label IsVisible="{Binding DateOfBirth.HasError}" Text="{Binding DateOfBirth.Error}" TextColor="Red" />
+
+            <Button
+                x:Name="RegisterBtn"
+                IsEnabled="{Binding ButtonEnabled.Value}"
+                Text="Register"
+                Command="{Binding RegisterCommand}"
+                SemanticProperties.Hint="Register command"
+                HorizontalOptions="Center"
+                Margin="0,10" />
+
+            <Label Text="Invalid data." IsVisible="{Binding InvalidCredentials.Value}" TextColor="Red" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

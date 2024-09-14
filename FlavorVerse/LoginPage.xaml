@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FlavorVerse.ViewModels"
+             x:Class="FlavorVerse.LoginPage"
+             Title="Login">
+
+    <ContentPage.BindingContext>
+        <local:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout x:Name="ParentLayout" Padding="30,0">
+
+            <Label
+                Text="Login"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1"
+                Margin="0,30" />
+
+            <Entry Placeholder="Email" Text="{Binding Email.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Email.HasError}" Text="{Binding Email.Error}" TextColor="Red" />
+
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Password.HasError}" Text="{Binding Password.Error}" TextColor="Red" />
+
+            <Button
+                x:Name="LoginBtn"
+                IsEnabled="{Binding ButtonEnabled.Value}"
+                Text="Login"
+                Command="{Binding LoginCommand}"
+                SemanticProperties.Hint="Login command"
+                HorizontalOptions="Center"
+                Margin="0,10" />
+
+            <Label Text="Invalid credentials." IsVisible="{Binding InvalidCredentials.Value}" TextColor="Red" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
