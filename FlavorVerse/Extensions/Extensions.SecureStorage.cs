@@ -8,6 +8,7 @@ namespace FlavorVerse.Extensions
         public static UserDto GetUser(this ISecureStorage storage)
         {
             var token = Task.Run(async () => await storage.GetAsync("token")).Result;
+            var userDisplayName = Task.Run(async () => await storage.GetAsync("userDisplayName")).Result;
 
             if (token == null)
             {
@@ -31,7 +32,7 @@ namespace FlavorVerse.Extensions
                 return null;
             }
 
-            return new UserDto { Id = Guid.Parse(id), Token = token };
+            return new UserDto { Id = Guid.Parse(id), Token = token, DisplayName = userDisplayName };
         }
     }
 }

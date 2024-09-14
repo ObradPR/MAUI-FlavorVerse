@@ -1,10 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:cmp="clr-namespace:FlavorVerse.Components"
+            xmlns:local="clr-namespace:FlavorVerse.ViewModels"
             x:Class="FlavorVerse.HomePage"
             Title="Home">
 
-    <StackLayout>
-        <Label Text="HOME PAGE"></Label>
-    </StackLayout>
+    <ContentPage.BindingContext>
+        <local:HomeViewModel></local:HomeViewModel>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout Padding="20">
+            <VerticalStackLayout>
+                <!-- App Title Heading -->
+                <Label Text="Welcome to FlavorVerse"
+                FontSize="30"
+                HorizontalOptions="Center"
+                TextColor="DarkSlateBlue" />
+
+                <!-- Small Description About the App -->
+                <Label Text="Discover, rate, and comment on recipes from home cooks and professional chefs around the world!"
+                FontSize="16"
+                HorizontalOptions="Center"
+                TextColor="Gray"
+                Margin="0,10,0,0" />
+
+                <!-- Personal Welcome if User is Logged In -->
+                <Label x:Name="WelcomeUserLabel"
+                FontSize="18"
+                TextColor="DarkSlateBlue"
+                HorizontalOptions="Center"
+                IsVisible="False" />
+                <!-- This will be shown when a user is logged in -->
+            </VerticalStackLayout>
+            <VerticalStackLayout Padding="0,50">
+                <!-- Engaging Text for Customers -->
+                <Label Text="Explore the world of flavors, crafted by chefs and home cooks!"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="DarkSlateBlue"
+                   HorizontalOptions="Center" />
+
+                <!-- Recipe Grid -->
+                <Grid ColumnSpacing="10" RowSpacing="10" Margin="0,20,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Loop through recipes -->
+                    <CollectionView ItemsSource="{Binding Recipes}" Grid.Row="0" Grid.ColumnSpan="2">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <cmp:RecipeCard />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+                <!-- Link to Open Recipes Page -->
+                <Button Text="See More Recipes" 
+                        Command="{Binding GoToRecipesPageCommand}" 
+                        BackgroundColor="LightBlue" 
+                        TextColor="DarkBlue" 
+                        HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

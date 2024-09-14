@@ -64,6 +64,7 @@ namespace FlavorVerse.ViewModels
             if (res.IsSuccessful)
             {
                 await SecureStorage.Default.SetAsync("token", res.Data!.Token);
+                await SecureStorage.Default.SetAsync("userDisplayName", res.Data!.DisplayName);
 
                 UserDto user = SecureStorage.Default.GetUser();
 

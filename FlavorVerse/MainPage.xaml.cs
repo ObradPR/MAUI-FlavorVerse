@@ -23,12 +23,17 @@ public partial class MainPage : TabbedPage
 
     private void SetUpTabs()
     {
-        this.Children.Add(new HomePage());
+        this.Children.Add(new NavigationPage(new HomePage()) { Title = "Home" });
+        this.Children.Add(new NavigationPage(new RecipePage()) { Title = "Recipes" });
 
         if (!IsLogged)
         {
-            this.Children.Add(new LoginPage());
-            this.Children.Add(new RegisterPage());
+            this.Children.Add(new NavigationPage(new LoginPage()) { Title = "Login" });
+            this.Children.Add(new NavigationPage(new RegisterPage()) { Title = "Register" });
+        }
+        else
+        {
+            this.Children.Add(new NavigationPage(new LogoutPage()) { Title = "Logout" });
         }
     }
 }
