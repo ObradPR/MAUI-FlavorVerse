@@ -7,7 +7,7 @@ namespace FlavorVerse.Services;
 
 public class RecipeService : IRecipeService
 {
-    public List<RecipeDto> GetList(QueryParams queryParams)
+    public PaginatedList<RecipeDto> GetList(QueryParams? queryParams = null)
     {
         var req = new RestRequest("recipe", Method.Get);
 
@@ -31,10 +31,10 @@ public class RecipeService : IRecipeService
         if (filterDirection != null)
             req.AddParameter(nameof(filterDirection), filterDirection, ParameterType.QueryString);
 
-        var res = Api.Client.Execute<List<RecipeDto>>(req);
+        var res = Api.Client.Execute<PaginatedList<RecipeDto>>(req);
 
         return res.IsSuccessful
-            ? res.Data ?? ([])
-            : [];
+            ? res.Data
+            : new PaginatedList<RecipeDto>();
     }
 }

@@ -12,7 +12,7 @@
 
     <ScrollView>
         <StackLayout Padding="20">
-            <VerticalStackLayout>
+            <VerticalStackLayout BackgroundColor="LightGreen">
                 <!-- App Title Heading -->
                 <Label Text="Welcome to FlavorVerse"
                 FontSize="30"
@@ -43,19 +43,14 @@
                    HorizontalOptions="Center" />
 
                 <!-- Recipe Grid -->
-                <Grid ColumnSpacing="10" RowSpacing="10" Margin="0,20,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <Grid ColumnSpacing="10" Margin="0,20,0,0" ColumnDefinitions="*">
 
                     <!-- Loop through recipes -->
-                    <CollectionView ItemsSource="{Binding Recipes}" Grid.Row="0" Grid.ColumnSpan="2">
+                    <CollectionView ItemsSource="{Binding Recipes}" Grid.Row="0">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="4"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <cmp:RecipeCard />
@@ -65,10 +60,10 @@
                 </Grid>
 
                 <!-- Link to Open Recipes Page -->
-                <Button Text="See More Recipes" 
-                        Command="{Binding GoToRecipesPageCommand}" 
-                        BackgroundColor="LightBlue" 
-                        TextColor="DarkBlue" 
+                <Button Text="See More Recipes"
+                        Command="{Binding GoToRecipesPageCommand}"
+                        BackgroundColor="LightBlue"
+                        TextColor="DarkBlue"
                         HorizontalOptions="Center" />
             </VerticalStackLayout>
         </StackLayout>

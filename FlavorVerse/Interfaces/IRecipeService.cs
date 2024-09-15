@@ -5,5 +5,5 @@ namespace FlavorVerse.Interfaces;
 
 public interface IRecipeService
 {
-    List<RecipeDto> GetList(QueryParams queryParams);
+    PaginatedList<RecipeDto> GetList(QueryParams? queryParams = null);
 }

@@ -3,16 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlavorVerse.Components.RecipeCard">
 
-    <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
-        <StackLayout>
+    <Frame Padding="10"
+           Margin="5"
+           BorderColor="LightGray"
+           CornerRadius="10"
+           HeightRequest="350">
+        <StackLayout HorizontalOptions="Center"
+                     VerticalOptions="Center">
+
+            <!-- Tap Gesture for the entire card -->
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnRecipeTapped" />
+            </StackLayout.GestureRecognizers>
+            
             <!-- Recipe Image -->
-            <Image Source="{Binding ImageUrl}" HeightRequest="100" Aspect="AspectFill" />
+            <Image Source="{Binding Image}"
+                   HeightRequest="200"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center" />
 
             <!-- Recipe Title -->
-            <Label Text="{Binding Title}" FontSize="18" FontAttributes="Bold" TextColor="Black" />
+            <Label Text="{Binding Title}"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   HorizontalOptions="Center" />
 
             <!-- Recipe Description -->
-            <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" />
+            <Label Text="{Binding Description}"
+                   FontSize="14"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
         </StackLayout>
     </Frame>
 </ContentView>
