@@ -1,7 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlavorVerse.SingleRecipePage"
-             Title="{Binding Title}">
+             Title="{Binding Recipe.Value.Title}">
     <ScrollView>
         <Grid Padding="20" RowSpacing="10" ColumnSpacing="120">
             <!-- Define two columns: one for the image and one for the description -->
@@ -19,7 +19,7 @@
             </Grid.RowDefinitions>
 
             <!-- Recipe Image on the left -->
-            <Image Source="{Binding Image}"
+            <Image Source="{Binding Recipe.Value.Image}"
                    Aspect="AspectFill"
                    Grid.Column="0"
                    Grid.Row="0"
@@ -29,7 +29,7 @@
 
             <!-- Recipe Description on the right -->
             <StackLayout Grid.Column="1" Grid.Row="0"  BackgroundColor="AliceBlue">
-                <Label Text="{Binding Title}"
+                <Label Text="{Binding Recipe.Value.Title}"
                         FontAttributes="Bold"
                         FontSize="30"
                         TextColor="DarkSlateBlue"
@@ -43,7 +43,7 @@ Padding="20,0,10,0" />
                        TextColor="DarkSlateBlue"
 Padding="20,0,10,0" />
 
-                <Label Text="{Binding Description}"
+                <Label Text="{Binding Recipe.Value.Description}"
                        FontSize="16"
                        TextColor="Black"
                        Padding="20,10,0,20" />
@@ -56,7 +56,7 @@ Padding="20,0,10,0" />
                        TextColor="DarkSlateBlue"
 Padding="20,0,10,0" />
 
-                <Label Text="{Binding CookingTime}"
+                <Label Text="{Binding Recipe.Value.CookingTime}"
                        FontSize="16"
                        TextColor="Black"
                        Padding="20,10,0,20" />
@@ -69,7 +69,7 @@ Padding="20,0,10,0" />
                        TextColor="DarkSlateBlue"
 Padding="20,0,10,0" />
 
-                <Label Text="{Binding Servings}"
+                <Label Text="{Binding Recipe.Value.Servings}"
                        FontSize="16"
                        TextColor="Black"
                        Padding="20,10,0,20" />
@@ -81,7 +81,7 @@ Padding="20,0,10,0" />
                        TextColor="DarkSlateBlue"
 Padding="20,0,10,0" />
 
-                <Label Text="{Binding Instructions}"
+                <Label Text="{Binding Recipe.Value.Instructions}"
                        FontSize="16"
                        TextColor="Black"
                        Padding="20,10,0,20" />
@@ -93,7 +93,7 @@ Padding="20,0,10,0" />
                        TextColor="DarkSlateBlue"
 Padding="20,0,10,0" />
 
-                <Label Text="{Binding User.DisplayName}"
+                <Label Text="{Binding Recipe.Value.User.DisplayName}"
                        FontSize="16"
                        TextColor="Black"
                        Padding="20,10,0,20" />
@@ -107,7 +107,7 @@ Padding="20,0,10,0" />
                            FontSize="15"
                            TextColor="DarkSlateBlue" />
 
-                    <Label Text="{Binding DifficultyCooking.Name, StringFormat=' {0}'}"
+                    <Label Text="{Binding Recipe.Value.DifficultyCooking.Name, StringFormat=' {0}'}"
                            FontSize="16"
                            TextColor="Black" />
                 </HorizontalStackLayout>
@@ -126,7 +126,7 @@ Padding="20,0,10,0" />
                                    FontSize="16"
                                    TextColor="Black" />
 
-                            <Label Text="{Binding DietaryInfo.GlutenFree, StringFormat=' {0}'}"
+                            <Label Text="{Binding Recipe.Value.DietaryInfo.GlutenFree, StringFormat=' {0}'}"
                                     FontSize="16"
                                     TextColor="Black" />
                         </HorizontalStackLayout>
@@ -137,7 +137,7 @@ Padding="20,0,10,0" />
                                    FontSize="16"
                                    TextColor="Black" />
 
-                            <Label Text="{Binding DietaryInfo.DairyFree, StringFormat=' {0}'}"
+                            <Label Text="{Binding Recipe.Value.DietaryInfo.DairyFree, StringFormat=' {0}'}"
                                     FontSize="16"
                                     TextColor="Black" />
                         </HorizontalStackLayout>
@@ -148,7 +148,7 @@ Padding="20,0,10,0" />
                                    FontSize="16"
                                    TextColor="Black" />
 
-                            <Label Text="{Binding DietaryInfo.Vegetarian, StringFormat=' {0}'}"
+                            <Label Text="{Binding Recipe.Value.DietaryInfo.Vegetarian, StringFormat=' {0}'}"
                                     FontSize="16"
                                     TextColor="Black" />
                         </HorizontalStackLayout>
@@ -159,7 +159,7 @@ Padding="20,0,10,0" />
                                    FontSize="16"
                                     TextColor="Black" />
 
-                            <Label Text="{Binding DietaryInfo.Vegan, StringFormat=' {0}'}"
+                            <Label Text="{Binding Recipe.Value.DietaryInfo.Vegan, StringFormat=' {0}'}"
                                     FontSize="16"
                                     TextColor="Black" />
                         </HorizontalStackLayout>
@@ -174,7 +174,7 @@ Padding="20,0,10,0" />
                            FontSize="15"
                            TextColor="DarkSlateBlue" />
 
-                    <Label Text="{Binding MealType.Name, StringFormat=' {0}'}"
+                    <Label Text="{Binding Recipe.Value.MealType.Name, StringFormat=' {0}'}"
                            FontSize="16"
                            TextColor="Black" />
                 </HorizontalStackLayout>
@@ -194,7 +194,7 @@ Padding="20,0,10,0" />
                                 FontSize="16"
                                 TextColor="Black" />
 
-                            <Label Text="{Binding Nutrition.Calories, StringFormat=' {0} cal'}"
+                            <Label Text="{Binding Recipe.Value.Nutrition.Calories, StringFormat=' {0} cal'}"
                                  FontSize="16"
                                  TextColor="Black" />
                         </HorizontalStackLayout>
@@ -205,7 +205,7 @@ Padding="20,0,10,0" />
                                 FontSize="16"
                                 TextColor="Black" />
 
-                            <Label Text="{Binding Nutrition.Protein, StringFormat=' {0} g'}"
+                            <Label Text="{Binding Recipe.Value.Nutrition.Protein, StringFormat=' {0} g'}"
                                      FontSize="16"
                                      TextColor="Black" />
                         </HorizontalStackLayout>
@@ -216,7 +216,7 @@ Padding="20,0,10,0" />
                                 FontSize="16"
                                 TextColor="Black" />
 
-                            <Label Text="{Binding Nutrition.Carbohydrates, StringFormat=' {0} g'}"
+                            <Label Text="{Binding Recipe.Value.Nutrition.Carbohydrates, StringFormat=' {0} g'}"
                                  FontSize="16"
                                  TextColor="Black" />
                         </HorizontalStackLayout>
@@ -227,7 +227,7 @@ Padding="20,0,10,0" />
                                 FontSize="16"
                                  TextColor="Black" />
 
-                            <Label Text="{Binding Nutrition.Fat, StringFormat=' {0} g'}"
+                            <Label Text="{Binding Recipe.Value.Nutrition.Fat, StringFormat=' {0} g'}"
                                  FontSize="16"
                                  TextColor="Black" />
                         </HorizontalStackLayout>
@@ -238,7 +238,7 @@ Padding="20,0,10,0" />
                                 FontSize="16"
                                  TextColor="Black" />
 
-                            <Label Text="{Binding Nutrition.Fiber, StringFormat=' {0} g'}"
+                            <Label Text="{Binding Recipe.Value.Nutrition.Fiber, StringFormat=' {0} g'}"
                                  FontSize="16"
                                  TextColor="Black" />
                         </HorizontalStackLayout>
@@ -253,7 +253,7 @@ Padding="20,0,10,0" />
                            FontSize="15"
                            TextColor="DarkSlateBlue" />
 
-                    <Label Text="{Binding CuisinesCSV, StringFormat=' {0}'}"
+                    <Label Text="{Binding Recipe.Value.CuisinesCSV, StringFormat=' {0}'}"
                            FontSize="16"
                            TextColor="Black" />
                 </HorizontalStackLayout>
@@ -266,7 +266,7 @@ Padding="20,0,10,0" />
                             FontSize="15"
                             TextColor="DarkSlateBlue" />
 
-                    <Label Text="{Binding CategoriesCSV, StringFormat=' {0}'}"
+                    <Label Text="{Binding Recipe.Value.CategoriesCSV, StringFormat=' {0}'}"
                             FontSize="16"
                             TextColor="Black" />
                 </HorizontalStackLayout>
@@ -280,7 +280,7 @@ Padding="20,0,10,0" />
                               FontSize="15"
                               TextColor="DarkSlateBlue" />
 
-                        <Label Text="{Binding FormattedIngredients}"
+                        <Label Text="{Binding Recipe.Value.FormattedIngredients}"
                               FontSize="16"
                               TextColor="Black" />
                     </VerticalStackLayout>
@@ -289,7 +289,80 @@ Padding="20,0,10,0" />
                 <BoxView HeightRequest="1" Color="LimeGreen" />
             </StackLayout>
 
-            <StackLayout Grid.Column="1" Grid.Row="1" BackgroundColor="AliceBlue">
+            <StackLayout Grid.Column="1" Grid.Row="1">
+                <Label Text="Reviews"
+                       FontAttributes="Bold"
+                        FontSize="20"
+                        TextColor="DarkSlateBlue" />
+                <CollectionView ItemsSource="{Binding Recipe.Value.Ratings}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Spacing="10" Padding="10" BackgroundColor="WhiteSmoke">
+                                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto">
+                                    <!-- Rating and Comment in a horizontal stack -->
+                                    <HorizontalStackLayout Grid.Column="0" HorizontalOptions="StartAndExpand">
+                                        <!-- Display Rating with larger font -->
+                                        <Label Text="{Binding RatingValue}"
+                                               FontAttributes="Bold"
+                                               FontSize="24"
+                                               TextColor="Goldenrod"
+                                               VerticalOptions="Center" />
+
+                                        <!-- Display Comment with larger font -->
+                                        <Label Text="{Binding Comment}"
+                                               FontSize="18"
+                                               TextColor="Gray"
+                                               VerticalOptions="Center"
+                                               Margin="10,0,0,0" />
+                                    </HorizontalStackLayout>
+
+                                    <!-- Username aligned to the right -->
+                                    <Label Text="{Binding User.DisplayName}"
+                                           Grid.Column="1"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Center"
+                                           TextColor="DarkGray"
+                                           FontAttributes="Italic" />
+                                </Grid>
+
+                                <!-- Separator line between each row -->
+                                <BoxView HeightRequest="1" Color="LimeGreen" HorizontalOptions="FillAndExpand" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Conditionally show the comment section if the user is logged in -->
+                <StackLayout IsVisible="{Binding IsLogged}" Spacing="15" Padding="0,20">
+                    <!-- Text area for comment -->
+                    <Editor Placeholder="Write your comment here..."
+                            HeightRequest="120"
+                            FontSize="16"
+                            TextColor="Black"
+                            BackgroundColor="WhiteSmoke"
+                            Margin="0,10,0,10"
+                            Text="{Binding NewCommentText.Value}" />
+
+                    <!-- Rating slider for values 0 to 10 -->
+                    <StackLayout>
+                        <Label Text="Rate the recipe (0 - 10)"
+                               FontSize="16"
+                               TextColor="Black" />
+                        <Slider Minimum="0" Maximum="10" Value="{Binding RatingValue.Value}" x:Name="RatingSlider" />
+                        <Label Text="{Binding RatingValue.Value, StringFormat='Rating: {0:F0}'}"
+                               FontSize="16"
+                               TextColor="DarkGray" />
+                    </StackLayout>
+
+                    <!-- Submit button -->
+                    <Button Text="Submit Review"
+                            BackgroundColor="DarkSlateBlue"
+                            TextColor="White"
+                            FontSize="18"
+                            CornerRadius="10"
+                            Padding="10"
+                            Command="{Binding SubmitReviewCommand}" />
+                </StackLayout>
             </StackLayout>
         </Grid>
     </ScrollView>

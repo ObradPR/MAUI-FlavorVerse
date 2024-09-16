@@ -6,4 +6,6 @@ namespace FlavorVerse.Interfaces;
 public interface IRecipeService
 {
     PaginatedList<RecipeDto> GetList(QueryParams? queryParams = null);
+
+    RecipeDto GetById(Guid id);
 }

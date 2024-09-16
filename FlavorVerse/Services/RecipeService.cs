@@ -7,6 +7,17 @@ namespace FlavorVerse.Services;
 
 public class RecipeService : IRecipeService
 {
+    public RecipeDto GetById(Guid id)
+    {
+        var req = new RestRequest($"recipe/{id}", Method.Get);
+
+        var res = Api.Client.Execute<RecipeDto>(req);
+
+        return res.IsSuccessful
+            ? res.Data
+            : new RecipeDto();
+    }
+
     public PaginatedList<RecipeDto> GetList(QueryParams? queryParams = null)
     {
         var req = new RestRequest("recipe", Method.Get);

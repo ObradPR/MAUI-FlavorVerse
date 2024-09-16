@@ -1,4 +1,5 @@
 using FlavorVerse.BusinessLogic.Dto;
+using FlavorVerse.ViewModels;
 using System.Text.RegularExpressions;
 
 namespace FlavorVerse;
@@ -11,6 +12,7 @@ public partial class SingleRecipePage : ContentPage
 
         recipe.Instructions = Regex.Replace(recipe.Instructions, @"(?<!^)(\d+\.)", "\n$1").TrimStart('\n');
 
-        BindingContext = recipe;
+        var viewModel = new SingleRecipeViewModel(recipe);
+        BindingContext = viewModel;
     }
 }
