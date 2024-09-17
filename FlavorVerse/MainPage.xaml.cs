@@ -33,6 +33,7 @@ public partial class MainPage : TabbedPage
         }
         else
         {
+            this.Children.Add(new NavigationPage(new NewRecipePage()) { Title = "New Recipe" });
             this.Children.Add(new NavigationPage(new LogoutPage()) { Title = "Logout" });
         }
     }

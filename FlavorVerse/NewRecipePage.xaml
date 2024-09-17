@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FlavorVerse.ViewModels"
+             x:Class="FlavorVerse.NewRecipePage"
+             Title="NewRecipePage">
+    <ContentPage.BindingContext>
+        <local:NewRecipeViewModel></local:NewRecipeViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout x:Name="ParentLayout" Padding="30,0" Spacing="15">
+
+            <!-- Title -->
+            <Entry Placeholder="Recipe Title" Text="{Binding Title.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Title.HasError}" Text="{Binding Title.Error}" TextColor="Red" />
+
+            <!-- Description -->
+            <Editor Placeholder="Description" Text="{Binding Description.Value}" HeightRequest="100" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Description.HasError}" Text="{Binding Description.Error}" TextColor="Red" />
+
+            <!-- Cooking Time -->
+            <Entry Placeholder="Cooking Time" Text="{Binding CookingTime.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding CookingTime.HasError}" Text="{Binding CookingTime.Error}" TextColor="Red" />
+
+            <!-- Servings -->
+            <Entry Placeholder="Servings" Text="{Binding Servings.Value}" Keyboard="Numeric" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Servings.HasError}" Text="{Binding Servings.Error}" TextColor="Red" />
+
+            <!-- Instructions -->
+            <Editor Placeholder="Instructions" Text="{Binding Instructions.Value}" HeightRequest="100" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Instructions.HasError}" Text="{Binding Instructions.Error}" TextColor="Red" />
+
+            <!-- Nutritional Values in One Row -->
+            <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto">
+                <Entry Placeholder="Protein" Text="{Binding Protein.Value}" Keyboard="Numeric" BackgroundColor="AliceBlue" Grid.Column="0" Margin="5,0" />
+                <Entry Placeholder="Carbohydrates" Text="{Binding Carbohydrates.Value}" Keyboard="Numeric" BackgroundColor="AliceBlue" Grid.Column="1" Margin="5,0" />
+                <Entry Placeholder="Fat" Text="{Binding Fat.Value}" Keyboard="Numeric" BackgroundColor="AliceBlue" Grid.Column="2" Margin="5,0" />
+                <Entry Placeholder="Fiber" Text="{Binding Fiber.Value}" Keyboard="Numeric" BackgroundColor="AliceBlue" Grid.Column="3" Margin="5,0" />
+            </Grid>
+
+            <!-- Dietary Preferences -->
+            <HorizontalStackLayout>
+                <CheckBox IsChecked="{Binding GlutenFree}" Margin="0,0,10,0" />
+                <Label Text="Gluten Free" VerticalOptions="Center" Margin="0,0,20,0" />
+
+                <CheckBox IsChecked="{Binding DairyFree}" Margin="0,0,10,0" />
+                <Label Text="Dairy Free" VerticalOptions="Center" Margin="0,0,20,0" />
+
+                <CheckBox IsChecked="{Binding Vegetarian}" Margin="0,0,10,0" />
+                <Label Text="Vegetarian" VerticalOptions="Center" Margin="0,0,20,0" />
+
+                <CheckBox IsChecked="{Binding Vegan}" Margin="0,0,10,0" />
+                <Label Text="Vegan" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Dropdown for MealType -->
+            <Picker Title="Meal Type" ItemsSource="{Binding MealTypes}" SelectedItem="{Binding SelectedMealType.Value}" />
+            <Label IsVisible="{Binding SelectedMealType.HasError}" Text="{Binding SelectedMealType.Error}" TextColor="Red" />
+
+            <!-- Dropdown for Difficulty Cooking -->
+            <Picker Title="Difficulty Cooking" ItemsSource="{Binding DifficultyCookings}" SelectedItem="{Binding SelectedDifficultyCooking.Value}" />
+            <Label IsVisible="{Binding SelectedDifficultyCooking.HasError}" Text="{Binding SelectedDifficultyCooking.Error}" TextColor="Red" />
+
+            <!-- Dropdown for Cuisine -->
+            <Picker Title="Cuisine" ItemsSource="{Binding Cuisines}" SelectedItem="{Binding SelectedCuisine.Value}" />
+            <Label IsVisible="{Binding SelectedCuisine.HasError}" Text="{Binding SelectedCuisine.Error}" TextColor="Red" />
+
+            <!-- Dropdown for Categories -->
+            <Picker Title="Category" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory.Value}" />
+            <Label IsVisible="{Binding SelectedCategory.HasError}" Text="{Binding SelectedCategory.Error}" TextColor="Red" />
+
+            <!-- Upload Image -->
+            <Button Text="Upload Image" Command="{Binding UploadImageCommand}" />
+            <Label IsVisible="{Binding Image.HasError}" Text="{Binding Image.Error}" TextColor="Red" />
+
+            <!-- Submit Button -->
+            <Button Text="Submit Recipe" Command="{Binding SubmitCommand}" IsEnabled="{Binding ButtonEnabled}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

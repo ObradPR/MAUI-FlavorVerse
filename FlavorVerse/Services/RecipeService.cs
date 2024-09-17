@@ -7,6 +7,60 @@ namespace FlavorVerse.Services;
 
 public class RecipeService : IRecipeService
 {
+    public Task AddAsync(AddRecipeDto data)
+    {
+        var req = new RestRequest("recipe", Method.Post);
+
+        // Add form data to the request
+        req.AddParameter("Title", data.Title);
+        req.AddParameter("Description", data.Description);
+        req.AddParameter("CookingTime", data.CookingTime);
+        req.AddParameter("Servings", data.Servings);
+        req.AddParameter("Instructions", data.Instructions);
+        if (data.Protein.HasValue)
+            req.AddParameter("Protein", data.Protein.Value);
+        if (data.Carbohydrates.HasValue)
+            req.AddParameter("Carbohydrates", data.Carbohydrates.Value);
+        if (data.Fat.HasValue)
+            req.AddParameter("Fat", data.Fat.Value);
+        if (data.Fiber.HasValue)
+            req.AddParameter("Fiber", data.Fiber.Value);
+        if (data.GlutenFree.HasValue)
+            req.AddParameter("GlutenFree", data.GlutenFree.Value);
+        if (data.DairyFree.HasValue)
+            req.AddParameter("DairyFree", data.DairyFree.Value);
+        if (data.Vegetarian.HasValue)
+            req.AddParameter("Vegetarian", data.Vegetarian.Value);
+        if (data.Vegan.HasValue)
+            req.AddParameter("Vegan", data.Vegan.Value);
+        req.AddParameter("MealTypeId", data.MealTypeId);
+        req.AddParameter("DifficultyCookingId", data.DifficultyCookingId);
+        req.AddParameter("MainCuisineId", data.MainCuisineId);
+        req.AddParameter("MainCategoryId", data.MainCategoryId);
+
+        // Add file if it exists
+        if (data.Image != null && data.Image.Length > 0)
+        {
+            // Add file using Stream overload
+            req.AddFile("Image",
+                        () => data.Image.OpenReadStream(), // Function returning the Stream
+                        data.Image.FileName,               // File name
+                        "image/jpeg");                     // MIME type
+        }
+
+        // Execute the request
+        var res = Api.Client.Execute(req);
+
+        if (!res.IsSuccessful)
+        {
+            // Handle failure (e.g., log errors or throw exceptions)
+            var errorMessage = res.ErrorMessage;
+            throw new Exception($"API request failed: {errorMessage}");
+        }
+
+        return Task.CompletedTask;
+    }
+
     public RecipeDto GetById(Guid id)
     {
         var req = new RestRequest($"recipe/{id}", Method.Get);
